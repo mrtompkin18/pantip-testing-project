@@ -2,7 +2,6 @@
   "name": "pantip-test-project",
   "version": "0.1.0",
   "private": true,
-  "main": "src/index.js",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -17,7 +16,7 @@
     "redux": "^4.0.5"
   },
   "scripts": {
-    "start": "react-scripts start -p $PORT",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
