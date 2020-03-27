@@ -1,38 +1,93 @@
-.App {
-  text-align: center;
+body {
+  background-color: #3c3962 !important;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.card {
+  color: #aba7c0;
+  cursor: pointer;
+  margin: 10px;
+  background-color: #464572 !important;
+  border: none !important;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.card:hover .title {
+  background-color: #1e1c33;
+  transition: background-color 0.4s ease-in-out;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.card > .header {
+  width: 100%;
+  height: 200px;
+  background-size: cover;
 }
 
-.App-link {
-  color: #61dafb;
+.card > .title {
+  padding: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.search-card-item {
+  color: #bfbad6;
+  padding: 14px;
+  background-color: #464572;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  border-left: 4px solid #e5c700;
+  transition: background-color 0.5s ease-in-out, border-left 0.2s ease;
+  cursor: pointer;
+}
+
+.search-card-item:hover {
+  border-left: 10px solid #e5c700;
+}
+
+.search-card-item.active {
+  background-color: #1e1c33;
+  border-left: 0px;
+}
+
+.search-card-item > .tag {
+  color: #7e79ad;
+  font-size: 14px;
+}
+
+.search-card-item > .content {
+  font-size: 13px;
+}
+
+.search-input-card {
+  border: 1px solid #5f5f92 !important;
+  color: #7e79ad;
+  padding: 25px 15px;
+  margin: 15px 0px;
+  background-color: #2c2a49;
+}
+
+.search-input-card > input {
+  background-color: #44416f !important;
+  width: 100% !important;
+  border: 1px solid #5f5f92 !important;
+  color: #aba7c0 !important;
+  padding: 10px;
+}
+
+.search-input-card > button {
+  position: relative;
+  background-color: #645fac !important;
+  border: 1px solid #5f5f92 !important;
+  color: #fff;
+  float: right;
+  margin-top: -38px;
+  margin-right: 8px;
+}
+
+.loading {
+  color: #aba7c0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
