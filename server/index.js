@@ -91,10 +91,11 @@ function generateBingoTemplate(list) {
     for (var i = 0; i < list.length; i = i + 5) {
         arr.push(list.slice(i, acc = acc + 5))
     }
+
     return arr;
 }
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3000;
 app.listen(port, function () {
     console.log("Server running on port " + port)
 })
