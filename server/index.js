@@ -22,17 +22,20 @@ app.post("/play_bingo", (req, res) => {
     const bingoTemplate = generateBingoTemplate(cardList);
 
     //คำตอบเคสชนะบิงโกสำหรับทุกเคส
-    const bingoCase1 = case1(bingoTemplate);
-    const bingoCase2 = case2(bingoTemplate);
-    const bingoCase3 = case3(bingoTemplate);
-    const bingoCase4 = case4(bingoTemplate);
+    const { bingoCase1, bingoCase2, bingoCase3, bingoCase4 } = bingoWinCase(bingoTemplate);
 
     //นำลิตส์ตัวเลขมาตรวจกับคำตอบ
+    const isBinggoCase1 = bingoCase1.toString() === getOnlyIncludeNumber(bingoCase1, numberList).toString();
+    const isBingoCase2 = bingoCase2.toString() === getOnlyIncludeNumber(bingoCase2, numberList).toString();
+    const isBinggoCase3 = bingoCase3.reduce((acc, anwser) => acc || anwser.toString() === getOnlyIncludeNumber(anwser, numberList).toString(), false);
+    const isBinggoCase4 = bingoCase4.reduce((acc, anwser) => acc || anwser.toString() === getOnlyIncludeNumber(anwser, numberList).toString(), false);
+
     let isBingo = false;
-    if (bingoCase1.toString() === getOnlyIncludeNumber(bingoCase1, numberList).toString() ||
-        bingoCase2.toString() === getOnlyIncludeNumber(bingoCase2, numberList).toString() ||
-        bingoCase3.reduce((acc, anwser) => acc || anwser.toString() === getOnlyIncludeNumber(anwser, numberList).toString(), false) ||
-        bingoCase4.reduce((acc, anwser) => acc || anwser.toString() === getOnlyIncludeNumber(anwser, numberList).toString(), false)) {
+    if (isBinggoCase1
+        || isBingoCase2
+        || isBinggoCase3
+        || isBinggoCase4
+    ) {
         isBingo = true;
     }
 
@@ -47,42 +50,21 @@ function getOnlyIncludeNumber(awnser, catedidate) {
     return awnser.filter(val => catedidate.includes(val))
 }
 
-function case1(bingoTemplate) {
-    var arr = [], i = 0, arrSize = bingoTemplate.length;
-    for (i; i < arrSize; i++)
-        arr.push(bingoTemplate[i][i]);
-    return arr;
-}
-
-function case2(bingoTemplate) {
-    var arr = [], i = 0, arrSize = bingoTemplate.length;
-    for (i; i < arrSize; i++)
-        arr.push(bingoTemplate[i][(arrSize - 1) - i]);
-    return arr;
-}
-
-function case3(bingoTemplate) {
-    var arr = [], arrSize = bingoTemplate.length;
-    for (var i = 0; i < arrSize; i++) {
-        var arr2 = [];
+function bingoWinCase(bingoTemplate) {
+    var i = 0, arrSize = bingoTemplate.length;
+    var bingoCase1 = [], bingoCase2 = [], bingoCase3 = [], bingoCase4 = []
+    for (i; i < arrSize; i++) {
+        bingoCase1.push(bingoTemplate[i][i]);
+        bingoCase2.push(bingoTemplate[i][(arrSize - 1) - i]);
+        var case3temp = [], case4temp = [];
         for (var j = 0; j < arrSize; j++) {
-            arr2.push(bingoTemplate[i][j]);
+            case3temp.push(bingoTemplate[i][j]);
+            case4temp.push(bingoTemplate[j][i]);
         }
-        arr.push(arr2);
+        bingoCase3.push(case3temp);
+        bingoCase4.push(case4temp);
     }
-    return arr;
-}
-
-function case4(bingoTemplate) {
-    var arr = [], arrSize = bingoTemplate.length;
-    for (var i = 0; i < arrSize; i++) {
-        var arr2 = [];
-        for (var j = 0; j < arrSize; j++) {
-            arr2.push(bingoTemplate[j][i]);
-        }
-        arr.push(arr2);
-    }
-    return arr;
+    return { bingoCase1, bingoCase2, bingoCase3, bingoCase4 }
 }
 
 function generateBingoTemplate(list) {
@@ -91,7 +73,6 @@ function generateBingoTemplate(list) {
     for (var i = 0; i < list.length; i = i + 5) {
         arr.push(list.slice(i, acc = acc + 5))
     }
-
     return arr;
 }
 
