@@ -1,4 +1,5 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project for candidate testing [React](https://pantip-testing-proj.herokuapp.com/).
 
-## Available Scripts
+## Bingo Game
+path : /server/index.js
 
