@@ -25,7 +25,7 @@ function App(props) {
     fectchData();
   }, []);
 
-  if (loading) return <h1 className="loading">กำลังดึงข้อมูล...</h1>
+  if (loading) return <h1 className="loading">กำลังดึงข้อมูล....</h1>
 
   return (
     <div className="container p-4">
